@@ -1,0 +1,2 @@
+C:/Users/Administrator/Documents/tradebot_mirae/extract_mfqspike/mfqspike.csv
+C:/Users/Administrator/Documents/tradebot_mirae/data_order.xlsx
