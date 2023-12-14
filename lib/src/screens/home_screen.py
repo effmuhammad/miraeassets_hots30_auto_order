@@ -63,10 +63,4 @@ class HomeScreen(ft.UserControl):
                 botton_row
             ]
         )
-
-        main_col.controls.append(
-            ft.FloatingActionButton(
-                icon=ft.icons.SETTINGS,
-            )
-        )
         return main_col
