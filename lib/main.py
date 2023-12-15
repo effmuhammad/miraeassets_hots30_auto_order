@@ -4,27 +4,27 @@ from src.screens.home_screen import *
 from src.screens.setting_screen import *
 
 
-def clean_page(page: ft.Page):
-    page.clean()
-    page.update()
+async def clean_page(page: ft.Page):
+    await page.clean_async()
+    await page.update_async()
 
 
-def navigate(page: ft.Page, screen: ft.UserControl):
-    clean_page(page)
-    page.add(screen)
-    page.update()
+async def navigate(page: ft.Page, screen: ft.UserControl):
+    await clean_page(page)
+    await page.add_async(screen)
+    await page.update_async()
 
 
-def main(page: ft.Page):
+async def main(page: ft.Page):
     page.padding = 20
     page.window_width = 400
     page.window_height = 500
     page.window_min_width = 400
     page.window_min_height = 500
 
-    navigate(page, HomeScreen())
+    await navigate(page, HomeScreen())
 
-    page.add(ft.FloatingActionButton(
+    await page.add_async(ft.FloatingActionButton(
         icon=ft.icons.SETTINGS,
         on_click=navigate(page, SettingScreen()),
     ))

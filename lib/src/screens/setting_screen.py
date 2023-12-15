@@ -1,24 +1,20 @@
 import flet as ft
 import pyautogui as pg
+import asyncio
 
 
 class SettingScreen(ft.UserControl):
     def __init__(self) -> None:
         super().__init__()
 
-    def get_position(self, to_set: ft.Text):
-        pos = pg.position()
-        to_set.value = f"Position: {pos}"
-
     def set_button(self, to_set: ft.Text) -> ft.ElevatedButton:
         return ft.ElevatedButton(
             "Get Pos",
-            on_click=self.get_position(to_set),
             height=50,
         )
 
     def build(self):
-        pos_text = ft.Text("Position")
+        pos_text = CursorPositionText()
 
         main_col = ft.Column(
             spacing=15,
@@ -29,3 +25,26 @@ class SettingScreen(ft.UserControl):
             ]
         )
         return main_col
+
+
+class CursorPositionText(ft.UserControl):
+    def __init__(self) -> None:
+        super().__init__()
+        self.value = "Position: "
+
+    async def did_mount_async(self):
+        print('did mount')
+        self.running = True
+        asyncio.create_task(self.update_cam())
+
+    async def will_unmount_async(self):
+        self.running = False
+
+    async def update(self):
+        while True:
+            pos = pg.position()
+            self.value = f"Position: {pos}"
+            super().update()
+
+    def build(self):
+        return ft.Text(self.value)
