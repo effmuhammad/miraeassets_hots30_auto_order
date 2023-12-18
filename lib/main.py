@@ -24,10 +24,10 @@ async def main(page: ft.Page):
 
     await navigate(page, HomeScreen())
 
-    await page.add_async(ft.FloatingActionButton(
-        icon=ft.icons.SETTINGS,
-        on_click=navigate(page, SettingScreen()),
-    ))
+    # await page.add_async(ft.FloatingActionButton(
+    #     icon=ft.icons.SETTINGS,
+    #     on_click=navigate(page, SettingScreen()),
+    # ))
 
 
 ft.app(target=main)

@@ -25,16 +25,33 @@ class HomeScreen(ft.UserControl):
 
     def build(self):
         link_field = ft.TextField(
-            label="Insert your orderlist (GSheet link)",
+            label="Link orderlist (link GSheet)",
             icon=ft.icons.LINK,
+        )
+        local_field = ft.TextField(
+            label="Path ke file orderlist",
+            icon=ft.icons.FOLDER,
+            expand=True,
+        )
 
+        local_file_row = ft.Row(
+            alignment=ft.MainAxisAlignment.START,
+            spacing=15,
+            controls=[
+                local_field,
+                ft.ElevatedButton(
+                    text="Browse",
+                    on_click=lambda: self.print_test(local_field),
+                    height=50,
+                )
+            ]
         )
 
         input_selection = ft.Column(
             spacing=15,
             controls=[
                 link_field,
-                link_field
+                local_file_row
             ]
         )
 
@@ -42,12 +59,22 @@ class HomeScreen(ft.UserControl):
             "Show Orderlist",
             on_click=lambda: ft.Text("Start"),
             height=50,
+            style=ft.ButtonStyle(
+                shape=ft.RoundedRectangleBorder(
+                    radius=10
+                ),
+            ),
         )
 
         start_button = ft.ElevatedButton(
             "Run Order",
             on_click=lambda: ft.Text("Start"),
             height=50,
+            style=ft.ButtonStyle(
+                shape=ft.RoundedRectangleBorder(
+                    radius=10
+                ),
+            ),
         )
 
         botton_row = ft.Row(
