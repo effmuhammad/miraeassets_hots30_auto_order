@@ -3,8 +3,9 @@ import pandas as pd
 
 
 class HomeScreen(ft.UserControl):
-    def __init__(self) -> None:
+    def __init__(self, browse: function) -> None:
         super().__init__()
+        self.browse = browse
 
     def read_orderlist(self, link):
         pass
@@ -41,7 +42,7 @@ class HomeScreen(ft.UserControl):
                 local_field,
                 ft.ElevatedButton(
                     text="Browse",
-                    on_click=lambda: self.print_test(local_field),
+                    on_click=self.browse,
                     height=50,
                 )
             ]
