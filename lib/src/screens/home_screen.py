@@ -3,7 +3,7 @@ import pandas as pd
 
 
 class HomeScreen(ft.UserControl):
-    def __init__(self, browse: function) -> None:
+    def __init__(self, browse) -> None:
         super().__init__()
         self.browse = browse
 
